@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab706b46afba43c7bcaf27ce28c7c22, type: 3}
+  m_Name: PlatformData
+  m_EditorClassIdentifier: 
+  platforms:
+  - {fileID: 4253996280045004848, guid: 8ab5ad465ae1f45a5b459a86f1a8f4fa, type: 3}
+  - {fileID: 5022074198862938047, guid: ac7ccfb999c7d486da37ea7a25497d7e, type: 3}
+  - {fileID: 8423517331875136824, guid: c3610071fa5d6476d8b507861aad3ae2, type: 3}
+  - {fileID: 7781928530665752165, guid: b3463cd425cdf4e85ad6ce4788317bfa, type: 3}
+  initialMoveSpeed: 7
+  pYMinOffset: 0
+  pYMaxOffset: 2
+  pXMinOffset: 0
+  pXMaxOffset: 3.5

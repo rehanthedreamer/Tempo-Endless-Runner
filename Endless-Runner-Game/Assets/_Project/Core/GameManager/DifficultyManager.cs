@@ -1,0 +1,49 @@
+using UnityEngine;
+using System;
+using UnityEngine.UI;
+
+public class DifficultyManager : Singleton<DifficultyManager>
+{
+    [SerializeField] private DifficultyConfig config;
+
+    public static Action<float> OnSpeedMultiplierChanged;
+
+    private float _timer;
+    private float _currentMultiplier = 1f;
+    [SerializeField] Slider difficultySlider;
+
+    void Start()
+    {
+        OnSpeedMultiplierChanged?.Invoke(_currentMultiplier);
+    }
+
+    public float GetCurrentMultiplier()
+    {
+        return _currentMultiplier;
+    }
+
+    private void Update()
+    {
+        _timer += Time.deltaTime;
+        difficultySlider.value = Mathf.Clamp01(_timer / config.difficultyInterval);
+        if (_timer >= config.difficultyInterval)
+        {
+            _timer = 0f;
+            IncreaseDifficulty();
+        }
+    }
+
+    private void IncreaseDifficulty()
+    {
+        _currentMultiplier += config.speedMultiplierStep;
+        _currentMultiplier = Mathf.Min(_currentMultiplier, config.maxMultiplier);
+
+        OnSpeedMultiplierChanged?.Invoke(_currentMultiplier);
+    }
+
+    public void ResetDifficulty()
+    {
+        _currentMultiplier = 1f;
+        OnSpeedMultiplierChanged?.Invoke(_currentMultiplier);
+    }
+}
