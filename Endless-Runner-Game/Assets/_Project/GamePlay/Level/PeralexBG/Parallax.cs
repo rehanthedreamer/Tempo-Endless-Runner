@@ -18,6 +18,7 @@ public class Parallax : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.Instance.CurrentState != GameState.inGame)return;
         distance += Time.deltaTime*_currentSpeed;
         mat.SetTextureOffset("_MainTex", Vector2.right*distance);
     }

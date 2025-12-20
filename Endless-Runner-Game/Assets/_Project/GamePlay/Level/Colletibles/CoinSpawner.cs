@@ -71,7 +71,7 @@ public class CoinSpawner : Singleton<CoinSpawner>
    void ReturnToPool(IPoolable poolable)
     {
         PoolableObject obj = poolable as PoolableObject;
-        obj.transform.parent = transform;
+      //  obj.transform.parent = transform;
         obj.OnDespawned();
         CoinQueue.Enqueue(obj);
     }

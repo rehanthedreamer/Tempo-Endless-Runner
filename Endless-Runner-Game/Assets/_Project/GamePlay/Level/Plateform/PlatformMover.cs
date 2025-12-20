@@ -23,6 +23,7 @@ public class PlatformMover : PoolableObject
     
     private void Update()
     {
+        if(GameManager.Instance.CurrentState != GameState.inGame)return;
         Move();
     }
 

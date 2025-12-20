@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,15 +18,18 @@ public class PlayerController : MonoBehaviour
     private Collider2D _collider;
 
     private bool _isGrounded;
-
+    AudioSource audioSource;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
     }
 
+ 
+
     private void Update()
-    {
+    { _rb.simulated = GameManager.Instance.CurrentState == GameState.inGame ? true : false;
+        if(GameManager.Instance.CurrentState != GameState.inGame)return;
         CheckGround();
         HandleInput();
         PlayerAnimationState();
@@ -58,6 +62,23 @@ public class PlayerController : MonoBehaviour
     void PlayerAnimationState()
     {
         animator.SetBool("isJump", !_isGrounded);
+        // if(!_isGrounded)
+        // {
+        //     if(audioSource.clip != SoundManager.Instance.jumpSound)
+        //     {
+        //         audioSource.clip = SoundManager.Instance.jumpSound;
+        //         audioSource.PlayOneShot(SoundManager.Instance.jumpSound);
+        //     }
+           
+        // }else
+        // {
+        //     if(audioSource.clip != SoundManager.Instance.runningSound)
+        //     {
+        //     audioSource.clip = SoundManager.Instance.runningSound;
+        //     audioSource.Play();
+        //     }
+        // }
+          
     }
 
     private void CheckGround()
@@ -75,21 +96,7 @@ public class PlayerController : MonoBehaviour
         _isGrounded = hit.collider != null;
     }
 
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        if (_collider == null) return;
 
-        Gizmos.color = Color.green;
-        Bounds bounds = _collider.bounds;
-        Vector2 origin = new Vector2(bounds.center.x, bounds.min.y);
-
-        Gizmos.DrawLine(
-            origin,
-            origin + Vector2.down * groundRayLength
-        );
-    }
-#endif
 
 
 }

@@ -17,3 +17,5 @@ MonoBehaviour:
   - {fileID: 5482958489866192659, guid: 9727ca47482fb4d96b0933b862ca33f5, type: 3}
   - {fileID: 3312881674679517107, guid: 489eb9de382dd476997d6943b262234a, type: 3}
   - {fileID: 7912663177875950280, guid: 24da5a78d541b4523b6f02d4d402b5fc, type: 3}
+  oYOffset: 1.3
+  spawnProbability: 4

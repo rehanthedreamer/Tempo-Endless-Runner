@@ -89,6 +89,22 @@ public static class SaveService
     }
 
     // --------------------
+    // Sound DATA
+    // --------------------
+   
+    public static bool MusicOn
+    {
+        get => PlayerPrefs.GetInt(GameConstants.MUSIC_KEY, 1) == 1;
+        set => PlayerPrefs.SetInt(GameConstants.MUSIC_KEY, value ? 1 : 0);
+    }
+
+    public static bool SfxOn
+    {
+        get => PlayerPrefs.GetInt(GameConstants.SFX_KEY, 1) == 1;
+        set => PlayerPrefs.SetInt(GameConstants.SFX_KEY, value ? 1 : 0);
+    }
+
+    // --------------------
     // RESET DATA
     // --------------------
 

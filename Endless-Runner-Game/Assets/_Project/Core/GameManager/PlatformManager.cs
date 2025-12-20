@@ -7,6 +7,10 @@ public class PlatformManager : Singleton<PlatformManager>
     [Header("Platform DataSO")]
     [SerializeField] PlatformData platformData;
     Queue<PoolableObject> platformMoverQueue = new Queue<PoolableObject>(); 
+    List<PoolableObject> spawnedObjects = new List<PoolableObject>();
+
+    public List<PoolableObject> initialPlatform;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,6 +46,7 @@ public class PlatformManager : Singleton<PlatformManager>
         }
 
         PoolableObject obj = platformMoverQueue.Dequeue();
+        spawnedObjects.Add(obj);
         Vector3 newPos = position;
         newPos.x +=Random.Range(platformData.pXMinOffset, platformData.pXMaxOffset);
         newPos.y = Random.Range(platformData.pYMinOffset, platformData.pYMaxOffset);
@@ -50,6 +55,8 @@ public class PlatformManager : Singleton<PlatformManager>
         obj.OnSpawned();
         // spawn coin on platform
         CoinSpawner.Instance.SpawnCoins(obj.GetComponent<BoxCollider2D>());
+        // spawn Obstacle on platform
+        ObstacleSpawner.Instance.SpawnObstacle(obj.GetComponent<BoxCollider2D>());
         return obj;
     }
 
@@ -57,7 +64,20 @@ public class PlatformManager : Singleton<PlatformManager>
     {
          PoolableObject obj = poolable as PoolableObject;
         obj.OnDespawned();
+        spawnedObjects.Remove(obj);
         platformMoverQueue.Enqueue(obj);
+    }
+
+    public void ReturnAllSpawnedToPool()
+    {
+        List<PoolableObject> temp = new List<PoolableObject>(spawnedObjects);
+        foreach (PoolableObject obj in temp)
+        {
+            if (obj != null)
+            {
+                obj.OnReleaseRequest();
+            }
+        }
     }
 
     private void OnDestroy()

@@ -8,6 +8,9 @@ public class DeadZone : MonoBehaviour
         {
             // Game end
             Debug.Log("Player Dead");
+            SoundManager.Instance.PlaySFX(SoundManager.Instance.deadSound);
+            SoundManager.Instance.StopBGMusic();
+            GameManager.Instance.SetState(GameState.GameOver);
         }
     }
 }

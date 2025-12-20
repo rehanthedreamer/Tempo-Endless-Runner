@@ -16,34 +16,34 @@ Animator animator;
             var obstacle = collision.collider.GetComponent<Obstacle>();
            StartCoroutine(OnPlayerHitBy(obstacle.GetObstacleType()));
         }
-        if (collision.collider.CompareTag("DeadZone"))
-        {
-            // Game end
-            Debug.Log("Player Dead");
-        }
     }
 
 
     IEnumerator OnPlayerHitBy(ObstacleType obstacleType)
     {
-        if(obstacleType == ObstacleType.Barrel)
-        {
-            animator.SetBool("isDead", true);
-        }else if(obstacleType == ObstacleType.Box)
+        if(obstacleType == ObstacleType.Box)
         {
             animator.SetBool("isHit", true);
+            // rest multiplier 
+            DifficultyManager.Instance.ResetDifficulty();
+            SoundManager.Instance.PlaySFX(SoundManager.Instance.hitSound);
         }
-        yield return new WaitForSeconds(1f);
-        if(obstacleType == ObstacleType.Barrel)
+        else if(obstacleType == ObstacleType.Barrel)
         {
             animator.SetBool("isDead", true);
-            // Game end
+            DifficultyManager.Instance.StopDifficulty();
+            
+        }
+        yield return new WaitForSeconds(.2f);
+        if(obstacleType == ObstacleType.Barrel)
+        {
+            SoundManager.Instance.PlaySFX(SoundManager.Instance.deadSound);
+            SoundManager.Instance.StopBGMusic();
+            GameManager.Instance.SetState(GameState.GameOver);
             Debug.Log("Player Dead");
         }else if(obstacleType == ObstacleType.Box)
         {
             animator.SetBool("isHit", false);
-            // rest multiplier 
-            DifficultyManager.Instance.ResetDifficulty();
         }
     }
 }

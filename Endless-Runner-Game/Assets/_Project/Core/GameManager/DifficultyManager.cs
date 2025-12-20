@@ -24,6 +24,7 @@ public class DifficultyManager : Singleton<DifficultyManager>
 
     private void Update()
     {
+       if( GameManager.Instance.CurrentState != GameState.inGame) return;
         _timer += Time.deltaTime;
         difficultySlider.value = Mathf.Clamp01(_timer / config.difficultyInterval);
         if (_timer >= config.difficultyInterval)
@@ -44,6 +45,12 @@ public class DifficultyManager : Singleton<DifficultyManager>
     public void ResetDifficulty()
     {
         _currentMultiplier = 1f;
+        OnSpeedMultiplierChanged?.Invoke(_currentMultiplier);
+    }
+
+     public void StopDifficulty()
+    {
+        _currentMultiplier = 0f;
         OnSpeedMultiplierChanged?.Invoke(_currentMultiplier);
     }
 }

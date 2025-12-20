@@ -26,6 +26,5 @@ public class DistanceHUD : MonoBehaviour
       
         distanceText.text = Extensions. DistanceFormat(distance);
         //SaveService.TrySetBestDistance(GameMode.Easy, distance);
-
     }
 }

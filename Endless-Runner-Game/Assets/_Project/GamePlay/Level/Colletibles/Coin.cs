@@ -17,6 +17,7 @@ public class Coin : PoolableObject
         if(collision.CompareTag("Player"))
         {
             CoinHUD.OnCoinUICoinUpdate?.Invoke(1);
+            SoundManager.Instance.PlaySFX(SoundManager.Instance.coin);
             OnReleaseRequest();
         }
 
