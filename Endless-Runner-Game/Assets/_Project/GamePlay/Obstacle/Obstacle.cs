@@ -1,5 +1,4 @@
 using UnityEngine;
-using ERG;
 using System.Collections;
 public class Obstacle : PoolableObject
 {

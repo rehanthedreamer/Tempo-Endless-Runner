@@ -27,3 +27,9 @@ public enum PowerUps
     Shield,
     CoinMultiplayer
 }
+
+ public enum ObstacleType
+    {
+        Barrel,
+        Box
+    }

@@ -6,11 +6,6 @@ public static class GameConstants
         // SAVE KEYS
         // =============================
         public const string SAVE_KEY_PREFIX = "PLAYER_SAVE_";
-        public const string SAVE_BEST_DSTANCE = "BestDistance";
-        public const string SAVE_TOTAL_COINS = "TotalCoins";
-        public const string SAVE_SELECTED_MODE = "SelectedMode";
-        public const string SAVE_BOOST_PREFIX = "Boost_";
-        // Sounds
         public const string MUSIC_KEY = "MUSIC_ON";
         public const string SFX_KEY = "SFX_ON";
 
