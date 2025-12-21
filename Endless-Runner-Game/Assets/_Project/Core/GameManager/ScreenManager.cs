@@ -31,6 +31,7 @@ public class ScreenManager : Singleton<ScreenManager>
             _screenMap[screen.ScreenType] = screen;
             screen.Hide();
         }
+        HandleGameState(GameState.inMenu);
     }
 
     public void Show(ScreenType type)
@@ -63,14 +64,14 @@ public class ScreenManager : Singleton<ScreenManager>
                 // Show menu UI
                 Show(ScreenType.Menu);
                 menuBUD.ShowBUD();
-                gamePlayHUD.transform.DOScale(Vector3.zero, .0f);
+                gamePlayHUD.GetComponent<RectTransform>().DOScale(Vector3.zero, .0f);
                 break;
 
             case GameState.inGame:
                 // Start gameplay
                 CloseCurrent();
                 menuBUD.HideBUD();
-                gamePlayHUD.transform.DOScale(Vector3.one, .0f);
+                gamePlayHUD.GetComponent<RectTransform>().DOScale(Vector3.one, .0f);
                 SoundManager.Instance.PlayBGMusic(SoundManager.Instance.bgMusic);
                 break;
 
@@ -78,7 +79,7 @@ public class ScreenManager : Singleton<ScreenManager>
                 // Show game over screen
                 Show(ScreenType.GameOver);
                 GameOverScreen.OnGameOver?.Invoke(GameManager.Instance.distanceTracker.Distance);
-                gamePlayHUD.transform.DOScale(Vector3.zero, 0f);
+                gamePlayHUD.GetComponent<RectTransform>().DOScale(Vector3.zero, 0f);
                 SoundManager.Instance.StopBGMusic();
                 break;
         }

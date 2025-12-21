@@ -20,3 +20,10 @@ public enum GameState
     inGame,
     GameOver
 }
+
+public enum PowerUps
+{
+    DubbleDash,
+    Shield,
+    Trail
+}
