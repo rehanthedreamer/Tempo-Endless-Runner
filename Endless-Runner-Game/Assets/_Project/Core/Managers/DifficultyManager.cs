@@ -45,6 +45,7 @@ public class DifficultyManager : Singleton<DifficultyManager>
     public void ResetDifficulty()
     {
         _currentMultiplier = 1f;
+         _timer = 0;
         OnSpeedMultiplierChanged?.Invoke(_currentMultiplier);
     }
 

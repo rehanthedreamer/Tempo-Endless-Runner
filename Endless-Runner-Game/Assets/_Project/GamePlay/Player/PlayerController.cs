@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rb;
     private Collider2D _collider;
     private bool _isGrounded;
-    AudioSource audioSource;
+    AudioSource runnindAudioSource;
+    AudioSource jumpAudioSource;
 
     void OnEnable()
     {
@@ -37,6 +38,8 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
+        runnindAudioSource = GetComponent<AudioSource>();
+        jumpAudioSource = GetComponentInChildren<AudioSource>();
         inputActions = new OnscreenInputs();
     }
 
@@ -58,23 +61,18 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInput()
     {
-// #if UNITY_EDITOR || UNITY_STANDALONE
-        //if (Input.GetMouseButtonDown(0))
+
         if ( inputActions.MainPlayer.Jump.WasPressedThisFrame())
         {
             TryJump();
         }
-// #else
-//         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-//         {
-//             TryJump();
-//         }
-// #endif
+
     }
    
     private void TryJump()
     {
         if (_remainingJumps <= 0)return;
+      //  jumpAudioSource.Play();
         _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0f);
         _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         _remainingJumps--;
@@ -82,24 +80,8 @@ public class PlayerController : MonoBehaviour
 
     void PlayerAnimationState()
     {
-        animator.SetBool("isJump", !_isGrounded);
-        // if(!_isGrounded)
-        // {
-        //     if(audioSource.clip != SoundManager.Instance.jumpSound)
-        //     {
-        //         audioSource.clip = SoundManager.Instance.jumpSound;
-        //         audioSource.PlayOneShot(SoundManager.Instance.jumpSound);
-        //     }
-           
-        // }else
-        // {
-        //     if(audioSource.clip != SoundManager.Instance.runningSound)
-        //     {
-        //     audioSource.clip = SoundManager.Instance.runningSound;
-        //     audioSource.Play();
-        //     }
-        // }
-          
+        animator.SetBool("isJump", !_isGrounded); 
+
     }
 
     private void CheckGround()
@@ -118,8 +100,8 @@ public class PlayerController : MonoBehaviour
         _isGrounded = hit.collider != null;
         // rest Dubble jump 
         if (!wasGrounded && _isGrounded) _remainingJumps =SaveService.GetDubbleJumpPower() ? 2:1; 
-;
- 
+        // play run audio
+        runnindAudioSource.mute =  GameManager.Instance.CurrentState == GameState.inGame && _isGrounded ? false: true;
     }
 
 
