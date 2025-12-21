@@ -7,6 +7,7 @@ public class CoinHUD : MonoBehaviour
     public static Action<int> OnCoinUICoinUpdate;
 
     [SerializeField] TMP_Text coinText;
+    [SerializeField] TMP_Text coinTextOnSetting;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
     {
@@ -26,5 +27,6 @@ public class CoinHUD : MonoBehaviour
     {
         SaveService.AddCoins(coinAmt);
         coinText.text = SaveService.GetCoins().ToString();
+        coinTextOnSetting.text =SaveService.GetCoins().ToString();
     }
 }

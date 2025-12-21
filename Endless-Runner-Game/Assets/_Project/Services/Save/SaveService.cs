@@ -13,35 +13,37 @@ public static class SaveService
     private class PlayerSaveData
     {
         public float bestDistance;
-        public List<string> activePowerUps = new List<string>();
+        public int coin;
+        public bool isDubbleJump = false;
+        public bool isShield = false;
+        public bool coinMultiplier = false;
     }
 
     // --------------------
     // Internal Access
     // --------------------
 
-    private static string GetKey(GameMode mode)
+    private static string GetKey()
     {
-        return GameConstants.SAVE_KEY_PREFIX + mode.ToString();
+        return GameConstants.SAVE_KEY_PREFIX;
     }
 
-    private static PlayerSaveData LoadInternal(GameMode mode)
+    private static PlayerSaveData LoadInternal()
     {
-        string key = GetKey(mode);
+        string key = GetKey();
 
         if (PlayerPrefs.HasKey(key))
         {
             string json = PlayerPrefs.GetString(key);
             return JsonUtility.FromJson<PlayerSaveData>(json);
         }
-
         return new PlayerSaveData();
     }
 
-    private static void SaveInternal(GameMode mode, PlayerSaveData data)
+    private static void SaveInternal( PlayerSaveData data)
     {
         string json = JsonUtility.ToJson(data);
-        PlayerPrefs.SetString(GetKey(mode), json);
+        PlayerPrefs.SetString(GetKey(), json);
         PlayerPrefs.Save();
     }
 
@@ -51,41 +53,63 @@ public static class SaveService
 
     public static int GetCoins()
     {
-        return PlayerPrefs.GetInt(GameConstants.SAVE_TOTAL_COINS);
+        return LoadInternal().coin; 
     }
 
     public static void AddCoins( int amount)
     {
-        PlayerPrefs.SetInt(GameConstants.SAVE_TOTAL_COINS,  GetCoins() + amount);
-        PlayerPrefs.Save();
+        var data = LoadInternal();
+        data.coin += amount;
+        SaveInternal( data);
     }
 
-    public static float GetBestDistance(GameMode mode)
+    public static float GetBestDistance()
     {
-        return LoadInternal(mode).bestDistance;
+        return LoadInternal().bestDistance;
     }
 
-    public static void TrySetBestDistance(GameMode mode, float distance)
+    public static void TrySetBestDistance( float distance)
     {
-        var data = LoadInternal(mode);
+        var data = LoadInternal();
 
         if (distance > data.bestDistance)
         {
             data.bestDistance = distance;
-            SaveInternal(mode, data);
+            SaveInternal( data);
         }
     }
 
-    public static List<string> GetActivePowerUps(GameMode mode)
+    public static bool GetDubbleJumpPower()
     {
-        return LoadInternal(mode).activePowerUps;
+        return LoadInternal().isDubbleJump;
+    }
+      public static bool GetShieldPower()
+    {
+        return LoadInternal().isShield;
+    }
+      public static bool GetCoinMultiplierPower()
+    {
+        return LoadInternal().coinMultiplier;
     }
 
-    public static void SetActivePowerUps(GameMode mode, List<string> powerUps)
+    public static void SetDubbleJumpPower(bool status)
     {
-        var data = LoadInternal(mode);
-        data.activePowerUps = powerUps;
-        SaveInternal(mode, data);
+         var data = LoadInternal();
+        data.isDubbleJump = status;
+        SaveInternal( data);
+         
+    }
+      public static void SetShieldPower(bool status)
+    {
+        var data = LoadInternal();
+        data.isShield = status;
+         SaveInternal( data);
+    }
+      public static void SetCoinMultiplierPower(bool status)
+    {
+        var data = LoadInternal();
+        data.coinMultiplier = status;
+        SaveInternal( data);
     }
 
     // --------------------
@@ -108,16 +132,8 @@ public static class SaveService
     // RESET DATA
     // --------------------
 
-    public static void ResetMode(GameMode mode)
-    {
-        PlayerPrefs.DeleteKey(GetKey(mode));
-    }
-
     public static void ResetAll()
     {
-        foreach (GameMode mode in Enum.GetValues(typeof(GameMode)))
-        {
-            PlayerPrefs.DeleteKey(GetKey(mode));
-        }
+        PlayerPrefs.DeleteKey(GetKey());
     }
 }

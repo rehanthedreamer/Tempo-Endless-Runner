@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DeadZone : MonoBehaviour
@@ -10,7 +11,12 @@ public class DeadZone : MonoBehaviour
             Debug.Log("Player Dead");
             SoundManager.Instance.PlaySFX(SoundManager.Instance.deadSound);
             SoundManager.Instance.StopBGMusic();
-            GameManager.Instance.SetState(GameState.GameOver);
+            StartCoroutine(GameOverAfterADealy());
         }
+    }
+    IEnumerator GameOverAfterADealy()
+    {
+        yield return new WaitForSeconds(.5f);
+        GameManager.Instance.SetState(GameState.GameOver);
     }
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2f504dba4cf9f4bd8833ee66599a7112
+guid: e8e214a901570447eb42832ef4b67d85
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: running-_0
+      name: shields-reflection-shiny-gold-frames-260nw-1785741860.jpg_0
       rect:
         serializedVersion: 2
-        x: 40
-        y: 0
-        width: 750
-        height: 750
+        x: 29
+        y: 16
+        width: 54
+        height: 241
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,8 +138,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa9d595aed93d441894cae12dee4bc9a
-      internalID: -644799264
+      spriteID: b082deceb1e9c4dd8972cb6aaebda1aa
+      internalID: -274206458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shields-reflection-shiny-gold-frames-260nw-1785741860.jpg_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 42
+        width: 85
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 009dea5bec8a2475bb1104fdca7ef9ad
+      internalID: 899212613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shields-reflection-shiny-gold-frames-260nw-1785741860.jpg_2
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 6
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50ab37bdaa1124c049574f188c5f9547
+      internalID: -192707721
       vertices: []
       indices: 
       edges: []
@@ -148,7 +192,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 967f3c896010f497999c91ae38af402f
+    spriteID: c7fc0c804e50e47f689e42b48de6e951
     internalID: 0
     vertices: []
     indices: 
@@ -158,7 +202,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      running-_0: -644799264
+      shields-reflection-shiny-gold-frames-260nw-1785741860.jpg_0: -274206458
+      shields-reflection-shiny-gold-frames-260nw-1785741860.jpg_1: 899212613
+      shields-reflection-shiny-gold-frames-260nw-1785741860.jpg_2: -192707721
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -80,13 +80,13 @@ public class PlatformManager : Singleton<PlatformManager>
         }
     }
 
-    private void OnDestroy()
-    {
-        // Clean up subscriptions
-        foreach (var obj in platformMoverQueue)
-        {
-            obj.OnReleaseRequested -= ReturnToPool;
-        }
-    }
+    // private void OnDestroy()
+    // {
+    //     // Clean up subscriptions
+    //     foreach (var obj in platformMoverQueue)
+    //     {
+    //         obj.OnReleaseRequested -= ReturnToPool;
+    //     }
+    // }
 
 }

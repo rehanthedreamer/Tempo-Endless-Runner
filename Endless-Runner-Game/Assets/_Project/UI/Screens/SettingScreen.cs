@@ -47,6 +47,7 @@ public class SettingScreen : UIScreen
         SoundManager.Instance.PlaySFX(SoundManager.Instance.btnClickSound);
         SaveService.ResetAll();
         SoundManager.Instance.ApplySettings();
+        CoinHUD.OnCoinUICoinUpdate?.Invoke(0);
 
     }
 }

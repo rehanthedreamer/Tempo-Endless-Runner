@@ -16,18 +16,18 @@ MonoBehaviour:
   - powerUps: 0
     discription: Dash twice in a row! Perfect for dodging obstacles or crossing gaps
       quickly.
-    buyValue: 599
+    buyValue: 5
     icon: {fileID: -1285518486, guid: e43b85e13d32646fb92ff4d1e5d7829b, type: 3}
     isPurchased: 0
   - powerUps: 1
     discription: Temporary invincibility! Survive one hit from enemies or hazards.
-    buyValue: 999
+    buyValue: 3
     icon: {fileID: -610934573, guid: 0389c6c8c912249b8aecbc09ba53e567, type: 3}
     isPurchased: 0
   - powerUps: 2
-    discription: Leave a glowing trail behind you. Looks awesome and helps you see
-      your path in fast sections.
-    buyValue: 99
-    icon: {fileID: -644799264, guid: 2f504dba4cf9f4bd8833ee66599a7112, type: 3}
+    discription: Each coin collected is worth 2x its normal value. Boosts score and
+      currency quickly.
+    buyValue: 2
+    icon: {fileID: 21300000, guid: 90dbeb17bbf214e10987920799316334, type: 3}
     isPurchased: 0
   storeItemUIPrefab: {fileID: 5766320743051077417, guid: 62b7b583a9e3e4864aef9c7a59ffe1b9, type: 3}

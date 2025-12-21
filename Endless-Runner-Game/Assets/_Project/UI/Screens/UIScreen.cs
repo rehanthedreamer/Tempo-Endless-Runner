@@ -8,12 +8,12 @@ public abstract class UIScreen : MonoBehaviour
     public virtual void Show()
     {
         // gameObject.SetActive(true);
-        gameObject.transform.DOScale(Vector3.one, .1f);
+        gameObject.transform.DOScale(Vector3.one, .3f);
     }
 
     public virtual void Hide()
     {
         // gameObject.SetActive(false);
-        gameObject.transform.DOScale(Vector3.zero, .1f);
+        gameObject.transform.DOScale(Vector3.zero, .3f);
     }
 }

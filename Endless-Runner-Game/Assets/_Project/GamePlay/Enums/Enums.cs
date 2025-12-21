@@ -25,5 +25,5 @@ public enum PowerUps
 {
     DubbleDash,
     Shield,
-    Trail
+    CoinMultiplayer
 }

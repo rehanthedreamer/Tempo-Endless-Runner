@@ -71,6 +71,8 @@ public class GameManager : Singleton<GameManager>
     public void OnGamePlayRetry()
     {
         distanceTracker.gameObject.transform.position =GameConstants.PLAYERPOS;
+        distanceTracker.ResetDistance();
+        distanceTracker.transform.GetComponent<PlayerCollision>().ResetPlayer();
         PlatformManager.Instance.initialPlatform[0].transform.position = GameConstants.P1_Pos;
         PlatformManager.Instance.initialPlatform[1].transform.position =  GameConstants.P2_Pos;
         PlatformManager.Instance.initialPlatform[2].transform.position =  GameConstants.P3_Pos;

@@ -1,0 +1,77 @@
+{
+    "version": 1,
+    "name": "OnscreenInputs",
+    "maps": [
+        {
+            "name": "MainPlayer",
+            "id": "3d899dd3-e5b6-4924-9f3f-f2f17014a204",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Value",
+                    "id": "79d9f5f2-2688-4944-9bbf-79530d26926d",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Sheild",
+                    "type": "Value",
+                    "id": "3e9bd6cd-8aed-461f-940d-ca931a8c35ce",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e30e56f4-3316-4db8-985c-b3cae2523356",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2004869b-f652-4c97-8336-c67357b8fbc5",
+                    "path": "<Gamepad>/rightStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c09947c-8ca1-48a9-9a9a-e3388cf8dbd3",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sheild",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a250fe5b-a035-44e9-8764-e482e1bb48d6",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sheild",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
