@@ -14,5 +14,22 @@ public class PlatformData : ScriptableObject
     [Header("Platform Spawn x Range")]
     public float pXMinOffset =0;
     public float pXMaxOffset = 3.5f;
+
+     void OnEnable()
+    {
+         GameManager.OnGameModeChanged += ApplyGameModeConfig;
+    }
+
+    void OnDisable()
+    {
+        GameManager.OnGameModeChanged -= ApplyGameModeConfig;
+    }
+
+    void ApplyGameModeConfig(GameModeConfig gameModeConfig)
+    {
+        pXMinOffset = gameModeConfig.pXMinOffset;
+        pXMaxOffset = gameModeConfig.pXMaxOffset;
+        
+    }
    
 }

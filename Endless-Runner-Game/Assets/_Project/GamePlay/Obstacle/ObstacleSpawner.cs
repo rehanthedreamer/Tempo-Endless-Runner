@@ -33,7 +33,7 @@ public class ObstacleSpawner : Singleton<ObstacleSpawner>
      public void SpawnObstacle(BoxCollider2D boxCollider2D)
     {
         int spawnProb = (int)Random.Range(1, 10);
-        if(spawnProb <= obstacalData.spawnProbability) return;
+        if(spawnProb >obstacalData.spawnProbability) return;
         if (obstacalQueue.Count == 0)
         {
             PoolableObject p = Instantiate(obstacalData.obstacles[Random.Range(0, obstacalData.obstacles.Count)].gameObject).GetComponent<PoolableObject>();

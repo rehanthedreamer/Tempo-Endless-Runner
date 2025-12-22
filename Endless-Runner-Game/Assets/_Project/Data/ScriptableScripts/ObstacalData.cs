@@ -12,5 +12,21 @@ public class ObstacalData : ScriptableObject
     [Header("Obstacle Spawn Probability")]
     [Range(1, 5)]
     public int spawnProbability;
+
+     void OnEnable()
+    {
+         GameManager.OnGameModeChanged += ApplyGameModeConfig;
+    }
+
+    void OnDisable()
+    {
+        GameManager.OnGameModeChanged -= ApplyGameModeConfig;
+    }
+
+    void ApplyGameModeConfig(GameModeConfig gameModeConfig)
+    {
+        spawnProbability = gameModeConfig.obstacleSpawnProbability;
+        
+    }
   
 }

@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public GameState CurrentState { get; private set; }
-
+    public static Action<GameModeConfig> OnGameModeChanged;
     public static event Action<GameState> OnGameStateChanged;
+    [Header("Game Mode Config")]
+    public GameplayData  gameplayData;
 
+    public GameState CurrentState { get; private set; }
     [Header("Game Mode Atributes")]
     [SerializeField] private TMP_Dropdown dropdown;
     public GameMode SelectedMode { get; private set; }
@@ -24,6 +26,8 @@ public class GameManager : Singleton<GameManager>
         SetState(GameState.inMenu);
         SetupDropdown();
         dropdown.onValueChanged.AddListener(OnModeSelected);
+        //set default mode
+         OnModeSelected(0);
     }
 
     void GameModeSprite()
@@ -61,6 +65,7 @@ public class GameManager : Singleton<GameManager>
         SelectedMode = (GameMode)index;
         Debug.Log("Selected Mode: " + SelectedMode);
         GameModeSprite();
+        OnGameModeChanged?.Invoke(gameplayData.GetGameModeData(SelectedMode));
     }
 
     private void OnDestroy()

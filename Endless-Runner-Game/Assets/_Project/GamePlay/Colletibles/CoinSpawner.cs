@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -71,10 +72,19 @@ public class CoinSpawner : Singleton<CoinSpawner>
    void ReturnToPool(IPoolable poolable)
     {
         PoolableObject obj = poolable as PoolableObject;
-      //  obj.transform.parent = transform;
         obj.OnDespawned();
         CoinQueue.Enqueue(obj);
+        StartCoroutine(ReparentNextFrame(obj));
     }
+    private IEnumerator ReparentNextFrame(PoolableObject obj)
+{
+    yield return null; // Wait one frame
+
+    if (obj != null && obj.gameObject != null)
+    {
+        obj.transform.SetParent(transform, false);
+    }
+}
 
     private void OnDestroy()
     {

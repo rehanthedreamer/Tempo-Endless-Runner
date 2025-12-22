@@ -12,6 +12,7 @@ public class DifficultyManager : Singleton<DifficultyManager>
     private float _currentMultiplier = 1f;
     [SerializeField] Slider difficultySlider;
 
+
     void Start()
     {
         OnSpeedMultiplierChanged?.Invoke(_currentMultiplier);
@@ -38,13 +39,13 @@ public class DifficultyManager : Singleton<DifficultyManager>
     {
         _currentMultiplier += config.speedMultiplierStep;
         _currentMultiplier = Mathf.Min(_currentMultiplier, config.maxMultiplier);
-
         OnSpeedMultiplierChanged?.Invoke(_currentMultiplier);
     }
 
     public void ResetDifficulty()
     {
-        _currentMultiplier = 1f;
+        _currentMultiplier = 1;
+         _timer = 0;
         OnSpeedMultiplierChanged?.Invoke(_currentMultiplier);
     }
 
