@@ -6,18 +6,34 @@ A 2D endless runner built in Unity 6000.0.58f2, optimized for mobile. Gameplay i
 
 Key features:
   *   Configurable gameplay via ScriptableObject.
-
   *   Main menu → Game Mode Select → Gameplay → Game Over → Store → Settings.
-
   *   Player input (keyboard, onscreen joystick (New input system) ).
-
   *   UI HUD for current run distance and coin.
-
   *   UI BUD for screen navigation.
-
   *   Save system for player best distance covered, coin earned and power ups.
-
   *   Object pooling for performance (Platform, obstacle, coin).
+
+**This project follows the basic SOLID principles to keep the code clean, maintainable, and easy to extend.
+
+1. Single Responsibility Principle (SRP)
+	Each class has one clear job:
+		PlayerController → handles player input and movement.
+		GameManager → manages game mode and config.
+		SaveService → loads and saves progress.
+		ScreenManager → handles UI page navigation and updates.
+	This makes code easier to test, debug, and modify.
+
+2. Open/Closed Principle (OCP)
+	Core systems are open for extension but closed for modification:
+		New game modes are added by creating new GameModeConfig assets, not by changing GameModeManager.
+	This lets you add features without breaking existing code.
+
+3. Liskov Substitution Principle (LSP)
+	Where inheritance is used (e.g., PoolableObject), subclasses can be used in place of the base class without breaking behavior.
+	For example, any object that inherits PoolableObject can be safely spawned/returned by the pool manager.
+
+5. Dependency Inversion Principle (DIP)
+	UI updates are driven by events (e.g., OnScoreChanged), not by directly calling player code.
 
 Core Systems
 
@@ -120,6 +136,8 @@ Design Patterns Used
 7. Data-Driven UI
 	* UI elements (labels, icons, colors) are configured in GameModeConfig and ItemData.
 	* StoreManager reads these assets to update buttons, descriptions, and visuals.
+
+ 
 
 How to Extend
 
