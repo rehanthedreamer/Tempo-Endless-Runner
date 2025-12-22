@@ -16,13 +16,15 @@ Keep the game smooth (60 FPS) on mobile devices by reducing CPU, memory, and GPU
 
 - Use compressed textures and small sprite atlases.  
 - Object prefabs to spawned objects to keep memory stable during gameplay.
+<img width="1101" height="508" alt="Screenshot 2025-12-23 at 12 12 28 AM" src="https://github.com/user-attachments/assets/6c1e94c5-6190-4a32-8701-27cec094ee86" />
+<img width="1100" height="530" alt="Screenshot 2025-12-23 at 12 15 48 AM" src="https://github.com/user-attachments/assets/31baf915-3f3b-45c3-9d6d-e731085d2d01" />
+
 
 ## Testing
 
 - Tested in Unity Profiler.  
 - Target: 55–60 FPS, low GC alloc, stable memory.
+<img width="1105" height="504" alt="Screenshot 2025-12-23 at 12 12 47 AM" src="https://github.com/user-attachments/assets/4e4a9094-94ca-4771-841d-979f172efb06" />
 
 ## Trade‑offs
-
-- Slightly higher memory (from pooling) for much smoother performance.  
 - Simple visuals and controls to ensure good performance on low‑end devices.
