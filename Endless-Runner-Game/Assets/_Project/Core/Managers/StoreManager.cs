@@ -9,6 +9,9 @@ public class StoreManager : Singleton<StoreManager>
     {
         InitStoreItems();
     }
+    /// <summary>
+    /// Init all store list and data
+    /// </summary>
     public void InitStoreItems()
     {
         for (int i = 0; i < storeDataConfig.storeItemList.Count; i++)

@@ -20,10 +20,12 @@ public class DistanceHUD : MonoBehaviour
     void Start()
     {
     }
-
+/// <summary>
+/// update distance value once broadcasted
+/// </summary>
+/// <param name="distance"></param>
    void HUDDistanceUpdate(float distance)
     {
-      
         distanceText.text = Extensions. DistanceFormat(distance);
         //SaveService.TrySetBestDistance(GameMode.Easy, distance);
     }

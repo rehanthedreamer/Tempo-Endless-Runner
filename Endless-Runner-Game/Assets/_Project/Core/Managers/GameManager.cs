@@ -28,13 +28,10 @@ public class GameManager : Singleton<GameManager>
         //set default mode
          OnModeSelected(0);
     }
-
-    void GameModeSprite()
-    {
-       modeImage.sprite = SelectedMode == GameMode.Easy 
-        ? easyModeSprite 
-        : hardModeSprite;
-    }
+    /// <summary>
+    /// Game state
+    /// </summary>
+    /// <param name="newState"></param>
 
     public void SetState(GameState newState)
     {
@@ -44,7 +41,16 @@ public class GameManager : Singleton<GameManager>
         CurrentState = newState;
         OnGameStateChanged?.Invoke(newState);
     }
+      void GameModeSprite()
+    {
+       modeImage.sprite = SelectedMode == GameMode.Easy 
+        ? easyModeSprite 
+        : hardModeSprite;
+    }
 
+/// <summary>
+/// set up game mode list 
+/// </summary>
     private void SetupDropdown()
     {
         dropdown.ClearOptions();
@@ -58,7 +64,10 @@ public class GameManager : Singleton<GameManager>
         SelectedMode = GameMode.Easy;
         GameModeSprite();
     }
-
+/// <summary>
+///  game mode selected 
+/// </summary>
+/// <param name="index"></param>
     private void OnModeSelected(int index)
     {
         SelectedMode = (GameMode)index;
@@ -71,7 +80,9 @@ public class GameManager : Singleton<GameManager>
     {
         dropdown.onValueChanged.RemoveListener(OnModeSelected);
     }
-
+/// <summary>
+/// Reset all requred data
+/// </summary>
     public void OnGamePlayRetry()
     {
         distanceTracker.gameObject.transform.position =GameConstants.PLAYERPOS;

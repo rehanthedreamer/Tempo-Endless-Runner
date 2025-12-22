@@ -59,7 +59,10 @@ public class MenuBUD : MonoBehaviour
     {
          transform.DOScale(Vector3.zero, .5f);
     }
-
+/// <summary>
+/// handle button state
+/// </summary>
+/// <param name="button"></param>
     void HiglightActiveButton(Button button)
     {
        

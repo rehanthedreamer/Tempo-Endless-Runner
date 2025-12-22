@@ -58,7 +58,9 @@ public class PlayerController : MonoBehaviour
         CheckGround();
     }
 
-
+/// <summary>
+/// Player input 
+/// </summary>
     private void HandleInput()
     {
 
@@ -78,12 +80,18 @@ public class PlayerController : MonoBehaviour
         _remainingJumps--;
     }
 
+/// <summary>
+/// player animation
+/// </summary>
     void PlayerAnimationState()
     {
         animator.SetBool("isJump", !_isGrounded); 
 
     }
 
+/// <summary>
+///  Check if player on the ground
+/// </summary>
     private void CheckGround()
     {
         bool wasGrounded = _isGrounded;

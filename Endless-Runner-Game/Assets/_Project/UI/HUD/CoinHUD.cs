@@ -22,7 +22,10 @@ public class CoinHUD : MonoBehaviour
     {
        HUDCoinUpdate(0);
     }
-
+/// <summary>
+/// coin update and save once broadcasted 
+/// </summary>
+/// <param name="coinAmt"></param>
    void HUDCoinUpdate(int coinAmt)
     {
         SaveService.AddCoins(coinAmt);

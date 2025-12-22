@@ -35,6 +35,10 @@ public class DifficultyManager : Singleton<DifficultyManager>
         }
     }
 
+    /// <summary>
+    /// brodcast once _currentMultiplier increased 
+    /// </summary>
+
     private void IncreaseDifficulty()
     {
         _currentMultiplier += config.speedMultiplierStep;
@@ -42,6 +46,9 @@ public class DifficultyManager : Singleton<DifficultyManager>
         OnSpeedMultiplierChanged?.Invoke(_currentMultiplier);
     }
 
+/// <summary>
+/// reset 
+/// </summary>
     public void ResetDifficulty()
     {
         _currentMultiplier = 1;

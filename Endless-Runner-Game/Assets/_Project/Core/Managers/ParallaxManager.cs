@@ -16,6 +16,10 @@ public class ParallaxManager : MonoBehaviour
         DifficultyManager.OnSpeedMultiplierChanged -= IncreaseParallaxSpeed;
     }
 
+/// <summary>
+/// increase Parallax speed over the time
+/// </summary>
+/// <param name="multiplier"></param>
     public void IncreaseParallaxSpeed(float multiplier)
     {
         foreach (var p in parallaxes)

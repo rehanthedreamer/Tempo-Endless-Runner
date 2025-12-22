@@ -15,7 +15,9 @@ public class ObstacleSpawner : Singleton<ObstacleSpawner>
         obstacalQueue.Shuffle();
 
     }
-
+/// <summary>
+/// Create pool
+/// </summary>
     void CreatePool()
     {
         for (int i = 0; i < obstacalData.obstacles.Count; i++)
@@ -32,7 +34,10 @@ public class ObstacleSpawner : Singleton<ObstacleSpawner>
         }
        
     }
-
+/// <summary>
+/// spawn from pool
+/// </summary>
+/// <param name="boxCollider2D"></param>
      public void SpawnObstacle(BoxCollider2D boxCollider2D)
     {
         int spawnProb = (int)Random.Range(1, 10);
@@ -54,7 +59,11 @@ public class ObstacleSpawner : Singleton<ObstacleSpawner>
         obj.OnSpawned();
        
     }
-
+/// <summary>
+/// spawn position on the platform
+/// </summary>
+/// <param name="box"></param>
+/// <returns></returns>
     private Vector3 GetPointAboveCollider(BoxCollider2D box)
     {
         Bounds bounds = box.bounds;
@@ -65,6 +74,10 @@ public class ObstacleSpawner : Singleton<ObstacleSpawner>
         return new Vector3(x, y, 0f);
     }
 
+/// <summary>
+/// return to pool system
+/// </summary>
+/// <param name="poolable"></param>
 
    void ReturnToPool(IPoolable poolable)
     {

@@ -25,7 +25,9 @@ public class DistanceTracker : MonoBehaviour
         _currentSpeed = moveSpeed * multiplier;
         
     }
-
+/// <summary>
+/// calculate player covered distance 
+/// </summary>
     private void Update()
     {
         if(GameManager.Instance.CurrentState != GameState.inGame)return;

@@ -96,7 +96,6 @@ public class PlayerCollision : MonoBehaviour
          StartCoroutine(ActivateShield());
     }
     
-
     private IEnumerator ActivateShield()
     {
         sheildActive = true;

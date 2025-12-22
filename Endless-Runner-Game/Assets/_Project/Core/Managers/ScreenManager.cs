@@ -34,6 +34,10 @@ public class ScreenManager : Singleton<ScreenManager>
         HandleGameState(GameState.inMenu);
     }
 
+/// <summary>
+/// show screen function
+/// </summary>
+/// <param name="type"></param>
     public void Show(ScreenType type)
     {
         if (_currentScreen != null)
@@ -45,7 +49,9 @@ public class ScreenManager : Singleton<ScreenManager>
             _currentScreen.Show();
         }
     }
-
+/// <summary>
+/// hide _currentScreen
+/// </summary>
     public void CloseCurrent()
     {
         if (_currentScreen == null)
@@ -55,7 +61,10 @@ public class ScreenManager : Singleton<ScreenManager>
         _currentScreen = null;
     }
 
-    
+    /// <summary>
+    /// Handle screen as per game state 
+    /// </summary>
+    /// <param name="state"></param>
     private void HandleGameState(GameState state)
     {
         switch (state)

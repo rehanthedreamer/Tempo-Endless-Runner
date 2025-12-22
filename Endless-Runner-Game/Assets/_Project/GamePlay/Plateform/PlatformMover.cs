@@ -14,7 +14,10 @@ public class PlatformMover : PoolableObject
     {
         DifficultyManager.OnSpeedMultiplierChanged -= UpdateSpeed;
     }
-
+/// <summary>
+/// set platform speed with currunt game speed with multiplier
+/// </summary>
+/// <param name="baseSpeed"></param>
     public void SetSpeed(float baseSpeed)
     {
         this.baseSpeed = baseSpeed;

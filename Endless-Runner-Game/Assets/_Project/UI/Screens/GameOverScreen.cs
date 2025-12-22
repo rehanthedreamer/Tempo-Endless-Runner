@@ -36,7 +36,10 @@ public class GameOverScreen : UIScreen
     {
         base.Hide();
     }
-
+/// <summary>
+/// show game stats
+/// </summary>
+/// <param name="distance"></param>
    void GameOverDescription(float distance)
         {
          if(distance >SaveService.GetBestDistance())

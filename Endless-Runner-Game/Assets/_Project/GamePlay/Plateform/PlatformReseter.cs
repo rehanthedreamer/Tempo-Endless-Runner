@@ -2,12 +2,10 @@ using UnityEngine;
 
 public class PlatformReseter : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
+   /// <summary>
+   /// if platform exit form this point platform will return to pool
+   /// </summary>
+   /// <param name="collision"></param>
     void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.GetComponent<PoolableObject>())

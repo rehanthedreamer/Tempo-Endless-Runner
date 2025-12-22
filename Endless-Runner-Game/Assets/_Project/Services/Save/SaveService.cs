@@ -79,6 +79,10 @@ public static class SaveService
         }
     }
 
+/// <summary>
+/// Power ups data
+/// </summary>
+/// <returns></returns>
     public static bool GetDubbleJumpPower()
     {
         return LoadInternal().isDubbleJump;
