@@ -13,7 +13,6 @@ public static class GameConstants
         // PERFORMANCE
         // =============================
         public const int POOL_INITIAL_SIZE = 4;
-        public const float GAME_DIFFICULTY_MULTIPLIER = 1.05f;
 
         // =============================
         // Initial Data

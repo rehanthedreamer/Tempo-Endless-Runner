@@ -1989,7 +1989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07ae9b551d8647a3b9e21962fe468ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 0.2
+  baseSpeed: 0.15
   _currentSpeed: 0
 --- !u!23 &524334550
 MeshRenderer:
@@ -2906,7 +2906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07ae9b551d8647a3b9e21962fe468ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 0.2
+  baseSpeed: 0.11
   _currentSpeed: 0
 --- !u!23 &786132260
 MeshRenderer:
@@ -3895,7 +3895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2751856.5, y: 1072968}
+  m_AnchoredPosition: {x: -3026856.8, y: 1181263.9}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &942969184
@@ -5605,6 +5605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b11ec117aa29490fb37d3d1588eefd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameplayData: {fileID: 11400000, guid: 8ed00153317184a01ad81c774d9ad633, type: 2}
   dropdown: {fileID: 905817007}
   easyModeSprite: {fileID: 2001940822, guid: aa5fbc5ecaf284e679211c88bc86b986, type: 3}
   hardModeSprite: {fileID: -1899429379, guid: aa5fbc5ecaf284e679211c88bc86b986, type: 3}
@@ -7476,7 +7477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07ae9b551d8647a3b9e21962fe468ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 0.2
+  baseSpeed: 0.07
   _currentSpeed: 0
 --- !u!23 &1835250057
 MeshRenderer:
@@ -7788,7 +7789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07ae9b551d8647a3b9e21962fe468ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 0.2
+  baseSpeed: 0.03
   _currentSpeed: 0
 --- !u!23 &1876087839
 MeshRenderer:

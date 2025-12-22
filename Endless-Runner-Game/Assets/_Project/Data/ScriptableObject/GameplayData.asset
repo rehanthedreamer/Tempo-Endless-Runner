@@ -12,3 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1d7416c0bd140a7947c1bd1476ddaf, type: 3}
   m_Name: GameplayData
   m_EditorClassIdentifier: 
+  gameModeConfigs:
+  - gameMode: 0
+    currentMultiplier: 1
+    difficultyInterval: 10
+    difficultyMultiplierStep: 0.1
+    obstacleSpawnProbability: 1
+    pXMinOffset: 0
+    pXMaxOffset: 2
+  - gameMode: 1
+    currentMultiplier: 1
+    difficultyInterval: 5
+    difficultyMultiplierStep: 0.3
+    obstacleSpawnProbability: 5
+    pXMinOffset: 1.5
+    pXMaxOffset: 3.5
