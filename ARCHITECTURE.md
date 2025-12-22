@@ -5,7 +5,6 @@ Overview
 A 2D endless runner built in Unity 6000.0.58f2, optimized for mobile. Gameplay is data‑driven, with multiple game modes, a store, settings, and a clean UI flow.
 
 Key features:
-
   *   Configurable gameplay via ScriptableObject.
 
   *   Main menu → Game Mode Select → Gameplay → Game Over → Store → Settings.
@@ -44,26 +43,31 @@ Save & Progress
 	
 
 Object Pooling
+
 	* PlatformManager, ObstacleSpawner, CoinSpawner use Queue<PoolableObject> to reuse objects.
 	* Objects are spawned from the pool and returned when off‑screen and game over.
 	* Reduces Instantiate/Destroy calls for better mobile performance.
 
 UI System
+
 	* Screens: Menu, Game Mode Select, Gameplay, Game Over, Store, Settings, HUD, BUD.
 	* MenuBUD handles navigation between pages.
 	* HUD shows current distance and coins; Game Over shows current and best distance.
 
 Store System
+
 	* StoreDataConfig (ScriptableObject) defines store items.
 	* StoreScreen holds the item list and handles purchases with coin.
 	* Power‑ups (Shield, Double Jump, Coin multiplier) are applied in gameplay.
 
 Settings System
+
 	* Settings page toggles: Music, SFX.
 	* Button to reset all progress (calls SaveService.ResetAll()).
 	* Settings are saved in SaveService.
 
 Data‑Driven Design
+
 	* All gameplay is driven by ScriptableObject:
 	* GameModeConfig → Game speed difficulty, platform difficulty , obstacle spawn rate.
 	* StoreDataConfig → store items, prices, icons.
@@ -71,6 +75,7 @@ Data‑Driven Design
 	* Easy to tune balance or add new modes/items without changing code.
 
 Design Patterns Used
+
 1. Singleton Pattern
 	* Used for core managers:
 	GameManager
@@ -117,6 +122,7 @@ Design Patterns Used
 	* StoreManager reads these assets to update buttons, descriptions, and visuals.
 
 How to Extend
+
 	* Add a New Game Mode
 	* Create a new GameModeConfig asset with custom values.
 	* Add a New Power‑up
@@ -124,6 +130,7 @@ How to Extend
 	* In StoreManager, add logic to apply the effect (e.g., PlayerController.Instance.ActivatePowerUp()).
 
 Add a New UI Page
+
 	* Create a new Canvas with the page (e.g., “Leaderboard”).
 	* Add a method and button in MdnuBUD (e.g., ShowLeaderboard()).
 	
