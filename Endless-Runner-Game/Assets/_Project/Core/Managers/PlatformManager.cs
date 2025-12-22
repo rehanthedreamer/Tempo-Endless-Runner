@@ -6,8 +6,11 @@ public class PlatformManager : Singleton<PlatformManager>
 {
     [Header("Platform DataSO")]
     [SerializeField] PlatformData platformData;
-    Queue<PoolableObject> platformMoverQueue = new Queue<PoolableObject>(); 
-    List<PoolableObject> spawnedObjects = new List<PoolableObject>();
+    List<PoolableObject> platformMoverQueue = new List<PoolableObject>(); 
+    // Queue test
+    //Queue<PoolableObject> platformMoverQueue = new Queue<PoolableObject>(); 
+    // test
+    //List<PoolableObject> spawnedObjects = new List<PoolableObject>();
 
     public List<PoolableObject> initialPlatform;
 
@@ -28,7 +31,8 @@ public class PlatformManager : Singleton<PlatformManager>
                 p.OnReleaseRequested += ReturnToPool;
                 p.OnDespawned();
                 p.transform.parent = transform;
-                platformMoverQueue.Enqueue(p);
+                platformMoverQueue.Add(p);
+                //platformMoverQueue.Enqueue(p);
             }
         }
        
@@ -42,11 +46,13 @@ public class PlatformManager : Singleton<PlatformManager>
             p.OnReleaseRequested += ReturnToPool;
             p.OnDespawned();
             p.transform.parent = transform;
-            platformMoverQueue.Enqueue(p);
+            platformMoverQueue.Add(p);
+            // platformMoverQueue.Enqueue(p);
         }
 
-        PoolableObject obj = platformMoverQueue.Dequeue();
-        spawnedObjects.Add(obj);
+        // PoolableObject obj = platformMoverQueue.Dequeue();
+        PoolableObject obj = platformMoverQueue.Find(p => !p.gameObject.activeInHierarchy);
+        // spawnedObjects.Add(obj);
         Vector3 newPos = position;
         newPos.x +=Random.Range(platformData.pXMinOffset, platformData.pXMaxOffset);
         newPos.y = Random.Range(platformData.pYMinOffset, platformData.pYMaxOffset);
@@ -62,31 +68,24 @@ public class PlatformManager : Singleton<PlatformManager>
 
    void ReturnToPool(IPoolable poolable)
     {
-         PoolableObject obj = poolable as PoolableObject;
+        PoolableObject obj = poolable as PoolableObject;
         obj.OnDespawned();
-        spawnedObjects.Remove(obj);
-        platformMoverQueue.Enqueue(obj);
+        // spawnedObjects.Remove(obj);
+        // platformMoverQueue.Enqueue(obj);
     }
 
     public void ReturnAllSpawnedToPool()
     {
-        List<PoolableObject> temp = new List<PoolableObject>(spawnedObjects);
-        foreach (PoolableObject obj in temp)
+       // List<PoolableObject> temp = new List<PoolableObject>(spawnedObjects);
+        foreach (PoolableObject obj in platformMoverQueue)
         {
-            if (obj != null)
+            if (obj.gameObject.activeInHierarchy)
             {
                 obj.OnReleaseRequest();
             }
         }
     }
 
-    // private void OnDestroy()
-    // {
-    //     // Clean up subscriptions
-    //     foreach (var obj in platformMoverQueue)
-    //     {
-    //         obj.OnReleaseRequested -= ReturnToPool;
-    //     }
-    // }
+    
 
 }

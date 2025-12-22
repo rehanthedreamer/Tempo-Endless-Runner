@@ -25,6 +25,11 @@ public class Obstacle : PoolableObject
         boxCollider2D.isTrigger = false;
     }
 
+     void OnDisable()
+    {
+         OnReleaseRequest();
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.CompareTag("Player"))

@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 public class CoinSpawner : Singleton<CoinSpawner>
 {
     [Header("Platform DataSO")]
     [SerializeField] CoinData coinData;
-    Queue<PoolableObject> CoinQueue = new Queue<PoolableObject>(); 
+     List<PoolableObject> CoinQueue = new List<PoolableObject>(); 
+     // Queue test
+   // Queue<PoolableObject> CoinQueue = new Queue<PoolableObject>(); 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,13 +18,14 @@ public class CoinSpawner : Singleton<CoinSpawner>
 
     void CreatePool()
     {
-            for (int j = 0; j < GameConstants.POOL_INITIAL_SIZE+5; j++)
+            for (int j = 0; j < GameConstants.POOL_INITIAL_SIZE+12; j++)
             {
                 PoolableObject p = Instantiate(coinData.coinPrefab).GetComponent<PoolableObject>();
                 p.OnReleaseRequested += ReturnToPool;
                 p.OnDespawned();
                 p.transform.parent = transform;
-                CoinQueue.Enqueue(p);
+                CoinQueue.Add(p);
+               // CoinQueue.Enqueue(p);
             }
        
     }
@@ -29,14 +33,14 @@ public class CoinSpawner : Singleton<CoinSpawner>
      public void SpawnCoins( BoxCollider2D boxCollider2D)
     {
        
-        int coinCount = Random.Range(0, 5);
+        int coinCount = Random.Range(0, 4);
         CheckPoolSize(coinCount);
         Vector3 position =  GetPointAboveCollider(boxCollider2D); 
 
         for (int i = 0; i < coinCount; i++)
         {
-            PoolableObject obj = CoinQueue.Dequeue();
-           
+          //  PoolableObject obj = CoinQueue.Dequeue();
+            PoolableObject obj = CoinQueue.Find(c => !c.gameObject.activeInHierarchy);
             Vector3 newPos = position;
             newPos.x +=coinData.cXOffset*i;
             obj.transform.parent = boxCollider2D.transform;
@@ -54,7 +58,8 @@ public class CoinSpawner : Singleton<CoinSpawner>
 
             p.OnReleaseRequested += ReturnToPool;
             p.OnDespawned();
-            CoinQueue.Enqueue(p);
+            CoinQueue.Add(p);
+            //CoinQueue.Enqueue(p);
         }
     }
 
@@ -73,25 +78,19 @@ public class CoinSpawner : Singleton<CoinSpawner>
     {
         PoolableObject obj = poolable as PoolableObject;
         obj.OnDespawned();
-        CoinQueue.Enqueue(obj);
-        StartCoroutine(ReparentNextFrame(obj));
+        //CoinQueue.Enqueue(obj);
     }
-    private IEnumerator ReparentNextFrame(PoolableObject obj)
-{
-    yield return null; // Wait one frame
-
-    if (obj != null && obj.gameObject != null)
+    public void ReturnAllSpawnedToPool()
     {
-        obj.transform.SetParent(transform, false);
-    }
-}
-
-    private void OnDestroy()
-    {
-        // Clean up subscriptions
-        foreach (var obj in CoinQueue)
+       // List<PoolableObject> temp = new List<PoolableObject>(spawnedObjects);
+        foreach (PoolableObject obj in CoinQueue)
         {
-            obj.OnReleaseRequested -= ReturnToPool;
+            if (obj.gameObject.activeInHierarchy)
+            {
+                obj.OnReleaseRequest();
+            }
         }
     }
+
+   
 }

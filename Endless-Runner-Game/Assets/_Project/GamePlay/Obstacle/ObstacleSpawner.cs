@@ -5,7 +5,9 @@ public class ObstacleSpawner : Singleton<ObstacleSpawner>
 {
     [Header("Platform DataSO")]
     [SerializeField] ObstacalData obstacalData;
-    Queue<PoolableObject> obstacalQueue = new Queue<PoolableObject>(); 
+    List<PoolableObject> obstacalQueue = new List<PoolableObject>(); 
+    // queue test
+     //Queue<PoolableObject> obstacalQueue = new Queue<PoolableObject>(); 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,7 +26,8 @@ public class ObstacleSpawner : Singleton<ObstacleSpawner>
                 p.OnReleaseRequested += ReturnToPool;
                 p.OnDespawned();
                 p.transform.parent = transform;
-                obstacalQueue.Enqueue(p);
+                obstacalQueue.Add(p);
+                //obstacalQueue.Enqueue(p);
             }
         }
        
@@ -40,11 +43,12 @@ public class ObstacleSpawner : Singleton<ObstacleSpawner>
             p.OnReleaseRequested += ReturnToPool;
             p.OnDespawned();
             p.transform.parent = transform;
-            obstacalQueue.Enqueue(p);
+            obstacalQueue.Add(p);
+            //obstacalQueue.Enqueue(p);
         }
         Vector3 position =  GetPointAboveCollider(boxCollider2D); 
-
-        PoolableObject obj = obstacalQueue.Dequeue();
+        //PoolableObject obj = obstacalQueue.Dequeue();
+        PoolableObject obj = obstacalQueue.Find(o => !o.gameObject.activeInHierarchy);
         obj.transform.parent = boxCollider2D.transform;
         obj.transform.SetPositionAndRotation(position, Quaternion.identity);
         obj.OnSpawned();
@@ -66,15 +70,17 @@ public class ObstacleSpawner : Singleton<ObstacleSpawner>
     {
          PoolableObject obj = poolable as PoolableObject;
         obj.OnDespawned();
-        obstacalQueue.Enqueue(obj);
+       // obstacalQueue.Enqueue(obj);
     }
-
-    private void OnDestroy()
+    public void ReturnAllSpawnedToPool()
     {
-        // Clean up subscriptions
-        foreach (var obj in obstacalQueue)
+        foreach (PoolableObject obj in obstacalQueue)
         {
-            obj.OnReleaseRequested -= ReturnToPool;
+            if (obj.gameObject.activeInHierarchy)
+            {
+                obj.OnReleaseRequest();
+            }
         }
     }
+  
 }

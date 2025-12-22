@@ -84,6 +84,8 @@ public class GameManager : Singleton<GameManager>
         PlatformManager.Instance.initialPlatform[1].OnSpawned();
         PlatformManager.Instance.initialPlatform[2].OnSpawned();
         PlatformManager.Instance.ReturnAllSpawnedToPool();
+        ObstacleSpawner.Instance.ReturnAllSpawnedToPool();
+        CoinSpawner.Instance.ReturnAllSpawnedToPool();
         SoundManager.Instance.StopSFX();
         DifficultyManager.Instance.ResetDifficulty();
     }
